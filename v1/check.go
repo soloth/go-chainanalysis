@@ -39,3 +39,30 @@ func (c *Client) IsSanctioned(walletAddress string) (bool, *oraclesanctions.Orac
 	}
 	return false, nil, nil
 }
+
+func (c *Client) IsSanctionedConcurrent(walletAddress string) (bool, oraclesanctions.OracleSanctionListNetwork, error) {
+
+	checkChan := make(chan oraclesanctions.IsSanctionedStruct)
+
+	go func() {
+		go c.OracleNetworks.Ethereum.IsSanctionedConcurrent(walletAddress, checkChan)
+		go c.OracleNetworks.Celo.IsSanctionedConcurrent(walletAddress, checkChan)
+		go c.OracleNetworks.Fantom.IsSanctionedConcurrent(walletAddress, checkChan)
+		go c.OracleNetworks.Arbitrum.IsSanctionedConcurrent(walletAddress, checkChan)
+		go c.OracleNetworks.Optimism.IsSanctionedConcurrent(walletAddress, checkChan)
+		go c.OracleNetworks.Avalance.IsSanctionedConcurrent(walletAddress, checkChan)
+		go c.OracleNetworks.Binance.IsSanctionedConcurrent(walletAddress, checkChan)
+		go c.OracleNetworks.Polygon.IsSanctionedConcurrent(walletAddress, checkChan)
+	}()
+
+	for i := 0; i < 8; i++ {
+		select {
+		case data := <-checkChan:
+			if data.Err != nil {
+				return data.IsSanctioned, data.Network, data.Err
+			}
+		}
+	}
+
+	return false, oraclesanctions.OracleSanctionListNetwork{}, nil
+}
