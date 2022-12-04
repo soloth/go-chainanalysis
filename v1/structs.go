@@ -1,25 +1,20 @@
 package gochainanalysis
 
-import "math/big"
+import (
+	"go-chainanalysis/v1/oraclesanctions"
+)
 
 type Client struct {
-	OracleSanctionListNetworks OracleSanctionListNetworks
+	OracleNetworks *OracleSanctionListNetworks
 }
 
 type OracleSanctionListNetworks struct {
-	Ethereum OracleSanctionListNetwork
-	Polygon  OracleSanctionListNetwork
-	Binance  OracleSanctionListNetwork
-	Avalance OracleSanctionListNetwork
-	Optimism OracleSanctionListNetwork
-	Arbitrum OracleSanctionListNetwork
-	Fantom   OracleSanctionListNetwork
-	Celo     OracleSanctionListNetwork
-}
-
-type OracleSanctionListNetwork struct {
-	Name                        string
-	ContractAddress string
-	RPCURL                      string
-	ChainID                     *big.Int
+	Ethereum *oraclesanctions.OracleSanctionListNetwork
+	Polygon  *oraclesanctions.OracleSanctionListNetwork
+	Binance  *oraclesanctions.OracleSanctionListNetwork
+	Avalance *oraclesanctions.OracleSanctionListNetwork
+	Optimism *oraclesanctions.OracleSanctionListNetwork
+	Arbitrum *oraclesanctions.OracleSanctionListNetwork
+	Fantom   *oraclesanctions.OracleSanctionListNetwork
+	Celo     *oraclesanctions.OracleSanctionListNetwork
 }

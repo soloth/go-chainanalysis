@@ -6,6 +6,12 @@ For best compatibility, please use Go >= 1.8.
 
 A list of currently compatible networks can be found [here](https://go.chainalysis.com/chainalysis-oracle-docs.html)
 
+### Dependencies
+Name | Description | 
+------------ | ------------ |
+[go-ethereum](https://geth.ethereum.org/) | Used for interacting with EVM |
+
+
 ### API List
 
 Name | Description | Status
