@@ -57,7 +57,7 @@ func main() {
 ```
 
 ### An example of changing an rpc endpoint
-```bigquery
+```golang
 import (
 	"go-chainanalysis/v1"
 	"math/big"
@@ -78,7 +78,7 @@ func main() {
 
 ### An example of updating all rpc URLS
 Please note, any empty values in `OracleSanctionListNetwork` other than the name will be ignored during any checks.
-```bigquery
+```golang
 import (
 	"go-chainanalysis/v1"
 	"math/big"
@@ -104,4 +104,30 @@ func main() {
 	},
 }
 
+```
+
+### Checking for sanctions
+```golang
+import (
+	"go-chainanalysis/v1"
+	"log"
+)
+
+func main() {
+	// Check each RPC node one at a time
+	client := gochainanalysis.NewClient().UseDefault()
+	isSanctioned, network, err := client.IsSanctioned("0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045")
+	if err != nil {
+		log.Fatal(network, err)
+	}
+	log.Println(isSanctioned)
+
+	// Check all RPC nodes at the same time
+	client := gochainanalysis.NewClient().UseDefault()
+	isSanctioned, network, err := client.IsSanctionedConcurrent("0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045")
+	if err != nil {
+		log.Fatal(network, err)
+	}
+	log.Println(isSanctioned)
+}
 ```

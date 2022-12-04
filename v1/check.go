@@ -1,7 +1,9 @@
 package gochainanalysis
 
 import (
+	"errors"
 	"go-chainanalysis/v1/oraclesanctions"
+	"time"
 )
 
 func (c *Client) IsSanctioned(walletAddress string) (bool, *oraclesanctions.OracleSanctionListNetwork, error) {
@@ -55,12 +57,15 @@ func (c *Client) IsSanctionedConcurrent(walletAddress string) (bool, oraclesanct
 		go c.OracleNetworks.Polygon.IsSanctionedConcurrent(walletAddress, checkChan)
 	}()
 
+
 	for i := 0; i < 8; i++ {
 		select {
 		case data := <-checkChan:
 			if data.Err != nil {
 				return data.IsSanctioned, data.Network, data.Err
 			}
+		case <-time.After(30 * time.Second):
+			return false, oraclesanctions.OracleSanctionListNetwork{}, errors.New("use new rpc urls, current are too slow")
 		}
 	}
 
