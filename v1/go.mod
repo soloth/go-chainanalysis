@@ -1,4 +1,4 @@
-module github.com/soloth/go-chainanalysis/v1
+module github.com/soloth/go-chainanalysis
 
 go 1.17
 
