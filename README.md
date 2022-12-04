@@ -4,6 +4,8 @@ A Golang SDK for [chainanalysis](https://www.chainalysis.com/free-cryptocurrency
 
 For best compatibility, please use Go >= 1.8.
 
+A list of currently compatible networks can be found [here](https://go.chainalysis.com/chainalysis-oracle-docs.html)
+
 ### API List
 
 Name | Description | Status
@@ -20,6 +22,80 @@ go get https://github.com/soloth/go-chainanalysis
 
 ```golang
 import (
-    "github.com/soloth/go-chainanalysis"
+    "github.com/soloth/go-chainanalysis/v1"
 )
+```
+
+### Generating a client
+
+```golang
+import (
+	"github.com/soloth/go-chainanalysis/v1"
+)
+
+func main() {
+	client := gochainanalysis.NewClient()
+}
+```
+
+### Using default config
+The default config uses public RPC endpoints. It is recommends you change them for a production environment.
+```golang
+import (
+	"github.com/soloth/go-chainanalysis/v1"
+)
+
+func main() {
+	client := gochainanalysis.NewClient().UseDefault()
+}
+```
+
+### An example of changing an rpc endpoint
+```bigquery
+import (
+	"go-chainanalysis/v1"
+	"math/big"
+)
+
+func main() {
+	client := gochainanalysis.NewClient()
+	
+	client.OracleSanctionListNetworks.Ethereum = gochainanalysis.OracleSanctionListNetwork{
+		Name: "Ethereum",
+		ContractAddress: "0x40C57923924B5c5c5455c48D93317139ADDaC8fb",
+		RPCURL: "https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161",
+		ChainID: big.NewInt(1),
+	}
+}
+
+```
+
+### An example of updating all rpc URLS
+Please note, any empty values in `OracleSanctionListNetwork` other than the name will be ignored during any checks.
+```bigquery
+import (
+	"go-chainanalysis/v1"
+	"math/big"
+)
+
+func main() {
+	client := gochainanalysis.NewClient()
+	
+	client.OracleSanctionListNetworks = gochainanalysis.OracleSanctionListNetworks{
+		Ethereum: gochainanalysis.OracleSanctionListNetwork{
+			Name: "Ethereum",
+			ContractAddress: "0x40C57923924B5c5c5455c48D93317139ADDaC8fb",
+			RPCURL: "https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161",
+			ChainID: big.NewInt(1),
+		},
+		Polygon:  gochainanalysis.OracleSanctionListNetwork{
+			Name: "Polygon",
+			ContractAddress: "0x40C57923924B5c5c5455c48D93317139ADDaC8fb",
+			RPCURL: "https://polygon-rpc.com",
+			ChainID: big.NewInt(137),
+		},
+		...
+	},
+}
+
 ```
