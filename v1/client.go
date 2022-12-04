@@ -1,5 +1,5 @@
-package go_chainanalysis
+package gochainanalysis
 
-func (c *Client) NewClient() *Client {
-	return c
+func NewClient() *Client {
+	return &Client{}
 }

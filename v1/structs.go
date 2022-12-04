@@ -1,4 +1,4 @@
-package go_chainanalysis
+package gochainanalysis
 
 import "math/big"
 
