@@ -21,7 +21,7 @@ Name | Description | Status
 ### Installation
 
 ```shell
-go get https://github.com/soloth/go-chainanalysis
+go get github.com/soloth/go-chainanalysis
 ```
 
 ### Importing
