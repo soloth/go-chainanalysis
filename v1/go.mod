@@ -1,4 +1,4 @@
-module go-chainanalysis
+module github.com/soloth/go-chainanalysis/v1
 
 go 1.17
 
@@ -22,4 +22,3 @@ require (
 	gopkg.in/natefinch/npipe.v2 v2.0.0-20160621034901-c1b8fa8bdcce // indirect
 )
 
-replace go-chainanalysis => github.com/soloth/go-chainanalysis/v1
