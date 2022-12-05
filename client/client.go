@@ -1,4 +1,4 @@
-package gochainanalysis
+package client
 
 func NewClient() *Client {
 	return &Client{}

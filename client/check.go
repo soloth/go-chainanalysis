@@ -1,8 +1,8 @@
-package gochainanalysis
+package client
 
 import (
 	"errors"
-	"go-chainanalysis/v1/oraclesanctions"
+	"github.com/soloth/go-chainanalysis/client/oraclesanctions"
 	"time"
 )
 

@@ -1,7 +1,7 @@
-package gochainanalysis
+package client
 
 import (
-	"go-chainanalysis/v1/oraclesanctions"
+	"github.com/soloth/go-chainanalysis/client/oraclesanctions"
 )
 
 type Client struct {

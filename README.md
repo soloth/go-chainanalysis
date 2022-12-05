@@ -2,7 +2,7 @@
 
 A Golang SDK for [chainanalysis](https://www.chainalysis.com/free-cryptocurrency-sanctions-screening-tools/) API.
 
-For best compatibility, please use Go >= 1.8.
+For best compatibility, please use Go >= 1.7.
 
 A list of currently compatible networks can be found [here](https://go.chainalysis.com/chainalysis-oracle-docs.html)
 
