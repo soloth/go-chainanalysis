@@ -6,6 +6,7 @@ import (
 
 type Client struct {
 	OracleNetworks *OracleSanctionListNetworks
+	APIKey         string
 }
 
 type OracleSanctionListNetworks struct {
