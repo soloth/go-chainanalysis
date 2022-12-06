@@ -28,7 +28,7 @@ go get github.com/soloth/go-chainanalysis
 
 ```golang
 import (
-    "github.com/soloth/go-chainanalysis/v1"
+    "github.com/soloth/go-chainanalysis"
 )
 ```
 
@@ -36,7 +36,7 @@ import (
 
 ```golang
 import (
-	"github.com/soloth/go-chainanalysis/v1"
+	"github.com/soloth/go-chainanalysis/client"
 )
 
 func main() {
@@ -48,7 +48,7 @@ func main() {
 The default config uses public RPC endpoints. It is recommends you change them for a production environment.
 ```golang
 import (
-	"github.com/soloth/go-chainanalysis/v1"
+	"github.com/soloth/go-chainanalysis/client"
 )
 
 func main() {
@@ -59,7 +59,7 @@ func main() {
 ### An example of changing an rpc endpoint
 ```golang
 import (
-	"go-chainanalysis/v1"
+	"github.com/soloth/go-chainanalysis/client"
 	"math/big"
 )
 
@@ -80,7 +80,7 @@ func main() {
 Please note, any empty values in `OracleSanctionListNetwork` other than the name will be ignored during any checks.
 ```golang
 import (
-	"go-chainanalysis/v1"
+	"github.com/soloth/go-chainanalysis/client"
 	"math/big"
 )
 
@@ -109,7 +109,7 @@ func main() {
 ### Checking for sanctions
 ```golang
 import (
-	"go-chainanalysis/v1"
+	"github.com/soloth/go-chainanalysis/client"
 	"log"
 )
 
